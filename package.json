@@ -2,10 +2,13 @@
   "name": "github-webhooks",
   "version": "1.0.0",
   "description": "Project to allow auto-deploy when receiving notifications from github webhooks",
-  "main": "app.js",
+  "main": "dist/app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "start": "node dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ci": "npm ci && npm run clean && npm run build && npm start"
   },
   "repository": {
     "type": "git",
@@ -19,7 +22,20 @@
   "homepage": "https://github.com/l-robinson/github-webhooks#readme",
   "dependencies": {
     "@octokit/webhooks": "^10.0.9",
+    "@types/node": "^18.6.2",
     "config": "^3.3.7",
-    "properties": "^1.2.1"
+    "properties": "^1.2.1",
+    "simple-git": "^3.10.0",
+    "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "eslint": "^8.20.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.4",
+    "eslint-plugin-promise": "^6.0.0",
+    "prettier": "^2.7.1"
   }
 }
