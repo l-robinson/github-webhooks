@@ -1,6 +1,6 @@
-import config from 'config';
 import { EmitterWebhookEvent } from '@octokit/webhooks';
 import { PushEvent } from '@octokit/webhooks-types';
+import config from 'config';
 import * as fs from 'fs';
 import * as os from 'os';
 import { simpleGit } from 'simple-git';
@@ -14,7 +14,7 @@ export class PushHandler {
     let path = config.get('app.root') + '/' + project;
     path = path.replace('~', os.homedir());
 
-    let updatePromise: Promise<any>;
+    let updatePromise: Promise<void>;
 
     if (!fs.existsSync(path)) {
       // Clone the repo for the first time
@@ -34,8 +34,8 @@ export class PushHandler {
 
     updatePromise.then(() => {
       const language = pushEvent.repository.language;
-      switch (language) {
-        case 'Typescript':
+      switch (language?.toLowerCase()) {
+        case 'typescript':
           new TypescriptHandler(path).buildAndDeploy();
           break;
         case 'java':
