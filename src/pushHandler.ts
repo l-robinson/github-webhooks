@@ -2,6 +2,7 @@ import config from 'config';
 import { EmitterWebhookEvent } from '@octokit/webhooks';
 import { PushEvent } from '@octokit/webhooks-types';
 import * as fs from 'fs';
+import * as os from 'os';
 import { simpleGit } from 'simple-git';
 
 export class PushHandler {
@@ -9,7 +10,8 @@ export class PushHandler {
     const pushEvent = event.payload as PushEvent;
     const project = pushEvent.repository.name;
     const url = pushEvent.repository.clone_url;
-    const path = config.get('app.root') + '/' + project;
+    let path = config.get('app.root') + '/' + project;
+    path = path.replace('~', os.homedir());
 
     if (!fs.existsSync(path)) {
       // Clone the repo for the first time

@@ -1,0 +1,13 @@
+[Unit]
+Description=Github Webhooks Listener
+After=network.target
+
+[Service]
+Type=simple
+User=opc
+WorkingDirectory=/home/opc/apps/github-webhooks
+ExecStart=/usr/bin/node /home/opc/apps/github-webhooks/dist/app.js > /home/opc/logs/github-webhooks.log
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
