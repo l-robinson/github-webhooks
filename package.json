@@ -1,0 +1,25 @@
+{
+  "name": "github-webhooks",
+  "version": "1.0.0",
+  "description": "Project to allow auto-deploy when receiving notifications from github webhooks",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/l-robinson/github-webhooks.git"
+  },
+  "author": "l-robinson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/l-robinson/github-webhooks/issues"
+  },
+  "homepage": "https://github.com/l-robinson/github-webhooks#readme",
+  "dependencies": {
+    "@octokit/webhooks": "^10.0.9",
+    "config": "^3.3.7",
+    "properties": "^1.2.1"
+  }
+}

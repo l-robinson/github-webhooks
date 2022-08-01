@@ -1,3 +1,6 @@
+# Local config
+config/local*
+
 # Logs
 logs
 *.log
